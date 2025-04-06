@@ -1,14 +1,15 @@
 import org.jetbrains.sbtidea.Keys.*
 
 ThisBuild / intellijPluginName := "My Awesome Framework"
-ThisBuild / intellijBuild := "243.22562.218"
-ThisBuild / intellijPlatform := IntelliJPlatform.IdeaCommunity
+ThisBuild / intellijBuild      := "243.22562.218"
+ThisBuild / intellijPlatform   := IntelliJPlatform.IdeaCommunity
 
 lazy val myAwesomeFramework =
-  project.in(file("."))
+  project
+    .in(file("."))
     .enablePlugins(SbtIdeaPlugin)
     .settings(
-      version := "0.0.1-SNAPSHOT",
+      version      := "0.0.1-SNAPSHOT",
       scalaVersion := "2.13.16",
       Compile / javacOptions ++= Seq("--release", "17"),
       Compile / scalacOptions ++= Seq("--release", "17"),
@@ -18,4 +19,5 @@ lazy val myAwesomeFramework =
       ),
       Compile / unmanagedResourceDirectories += baseDirectory.value / "resources",
       Test / unmanagedResourceDirectories += baseDirectory.value / "testResources",
+      Compile / unmanagedSourceDirectories += baseDirectory.value / "gen"
     )

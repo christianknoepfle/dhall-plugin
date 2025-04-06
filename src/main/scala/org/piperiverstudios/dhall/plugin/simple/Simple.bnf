@@ -1,0 +1,20 @@
+{
+  parserClass="org.piperiverstudios.dhall.plugin.simple.parser.SimpleParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Simple"
+  psiImplClassSuffix="Impl"
+  psiPackage="org.piperiverstudios.dhall.plugin.simple.psi"
+  psiImplPackage="org.piperiverstudios.dhall.plugin.simple.psi.impl"
+
+  elementTypeHolderClass="org.piperiverstudios.dhall.plugin.simple.psi.SimpleTypes"
+  elementTypeClass="org.piperiverstudios.dhall.plugin.simple.psi.SimpleElementType"
+  tokenTypeClass="org.piperiverstudios.dhall.plugin.simple.psi.SimpleTokenType"
+}
+
+simpleFile ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY

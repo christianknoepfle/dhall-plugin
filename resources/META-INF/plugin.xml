@@ -28,6 +28,16 @@
         <notificationGroup displayType="BALLOON" id="My Plugin Notification" />
         <toolWindow factoryClass="org.jetbrains.scala.samples.ui.MyToolWindowFactory" id="MyToolWindow" anchor="bottom"/>
         <completion.contributor implementationClass="org.jetbrains.scala.samples.completion.SimpleCompletionContributor" language="Properties"/>
+
+        <fileType
+            name="Simple File"
+            implementationClass="org.piperiverstudios.dhall.plugin.simple.SimpleFileType"
+            language="Simple"
+            extensions="simple"/>
+        <lang.parserDefinition
+                language="Simple"
+                implementationClass="org.piperiverstudios.dhall.plugin.simple.SimpleParserDefinition"/>
+
     </extensions>
 
 </idea-plugin>
