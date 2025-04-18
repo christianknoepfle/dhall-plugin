@@ -44,6 +44,20 @@
                 implementationClass="org.piperiverstudios.dhall.plugin.simple.SimpleSyntaxHighlighterFactory"/>
 
 
+        <fileType
+                name="Dhall File"
+                implementationClass="org.piperiverstudios.dhall.plugin.dhall.DhallFileType"
+                language="Dhall"
+                extensions="dhall"/>
+        <lang.parserDefinition
+                language="Dhall"
+                implementationClass="org.piperiverstudios.dhall.plugin.dhall.DhallParserDefinition"/>
+
+
+        <lang.syntaxHighlighterFactory
+                language="Dhall"
+                implementationClass="org.piperiverstudios.dhall.plugin.dhall.DhallSyntaxHighlighterFactory"/>
+
     </extensions>
 
 </idea-plugin>

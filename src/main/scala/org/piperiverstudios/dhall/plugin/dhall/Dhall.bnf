@@ -1,0 +1,83 @@
+{
+  parserClass="org.piperiverstudios.dhall.plugin.dhall.parser.DhallParser"
+  parserUtilClass="org.piperiverstudios.dhall.plugin.dhall.parser.DhallParserUtil"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Dhall"
+  psiImplClassSuffix="Impl"
+  psiPackage="org.piperiverstudios.dhall.plugin.dhall.psi"
+  psiImplPackage="org.piperiverstudios.dhall.plugin.dhall.psi.impl"
+
+  elementTypeHolderClass="org.piperiverstudios.dhall.plugin.dhall.psi.DhallTypes"
+  elementTypeClass="org.piperiverstudios.dhall.plugin.dhall.psi.DhallElementType"
+  tokenTypeClass="org.piperiverstudios.dhall.plugin.dhall.psi.DhallTokenType"
+}
+
+dhallFile ::= item_*
+
+private item_ ::= (keyword|COMMENT|LINE_TERMINATOR|other)
+
+keyword ::= IF | THEN | IDENTIFIER | STRING
+
+other ::= IF
+| THEN
+| ELSE
+| LET
+| IN
+| AS
+| USING
+| MERGE
+| MISSING
+| INFINITY
+| NAN
+| SOME
+| TO_MAP
+| ASSERT
+| FORALL
+| WITH
+| SHOW_CONSTRUCTOR
+| BOOL
+| TRUE
+| FALSE
+| OPTIONAL
+| NONE
+| NATURAL
+| INTEGER
+| DOUBLE
+| TEXT
+| BYTES
+| DATE
+| TIMEZONE
+| TIME
+| LIST
+| TYPE
+| KIND
+| SORT
+| IDENTIFIER
+| COMMENT
+| COMBINE
+| COMBINE_TYPES
+| EQUIVALENT
+| PREFER
+| LAMBDA
+| ARROW
+| COMPLETE
+| COLON
+| EQEQ
+| EQ
+| PLUS
+| MINUS
+| GREATER
+| SMALLER
+| GREATER_EQ
+| SMALLER_EQ
+| STRING
+| NUMBER_INT
+| NUMBER_FP
+| OPEN_BRACE
+| CLOSE_BRACE
+| OPEN_CURLY_BRACE
+| CLOSE_CURLY_BRACE
+| OPEN_BRACKET
+| CLOSE_BRACKET
