@@ -21,3 +21,6 @@ lazy val myAwesomeFramework =
       Test / unmanagedResourceDirectories += baseDirectory.value / "testResources",
       Compile / unmanagedSourceDirectories += baseDirectory.value / "gen"
     )
+
+libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.19"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % "test"

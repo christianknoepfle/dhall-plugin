@@ -38,6 +38,12 @@
                 language="Simple"
                 implementationClass="org.piperiverstudios.dhall.plugin.simple.SimpleParserDefinition"/>
 
+
+        <lang.syntaxHighlighterFactory
+                language="Simple"
+                implementationClass="org.piperiverstudios.dhall.plugin.simple.SimpleSyntaxHighlighterFactory"/>
+
+
     </extensions>
 
 </idea-plugin>
