@@ -31,8 +31,10 @@ COMPLETE      = "::"
 COLON      = ":"
 
 NUMBER_INT = [:jletterdigit:]+
-NUMBER_FP = [:jletterdigit:]+ "." [:jletterdigit:]+
+NUMBER_FP = [:digit:]+ "." [:digit:]+
 
+FILE_PATH = ("\.\./" | "\./") [^{WHITE_SPACE}]+
+URI = "http" [s]? "://" [^\ \n\r\t]+ // "http" [s]? "://" "[^ \n\r]+"
 STRING = "\"" [^\"]* "\""
 
 IDENTIFIER = [:jletter:] [:jletterdigit:]*
@@ -77,6 +79,9 @@ IDENTIFIER = [:jletter:] [:jletterdigit:]*
     "Kind"                  { return DhallTypes.KIND;}
     "Sort"                  { return DhallTypes.SORT;}
 
+    // imports
+    {URI}                       {return DhallTypes.URI;}
+    {FILE_PATH}                 {return DhallTypes.FILE_PATH;}
 
     {IDENTIFIER}            { return DhallTypes.IDENTIFIER; }
 
@@ -107,14 +112,18 @@ IDENTIFIER = [:jletter:] [:jletterdigit:]*
     "}"                      { return DhallTypes.CLOSE_CURLY_BRACE; }
     "["                      { return DhallTypes.OPEN_BRACKET; }
     "]"                      { return DhallTypes.CLOSE_BRACKET; }
-
+    ","                      { return DhallTypes.COMMA; }
+    "%"                      { return DhallTypes.PERCENT; }
+    "?"                     { return DhallTypes.QUESTION_MARK; }
     // Strings
     {STRING}                      {return DhallTypes.STRING;}
 
     // numbers
     {NUMBER_INT}                 {return DhallTypes.NUMBER_INT;}
     {NUMBER_FP}                  {return DhallTypes.NUMBER_FP;}
-    {WHITE_SPACE}                { /* ignore */ }
-    {LINE_TERMINATOR}            { /* ignore */ }
+
+
+    {WHITE_SPACE}                { print("WHITESPACE"); }
+    {LINE_TERMINATOR}            { print("LINE_TERMINATOR"); }
 
 }

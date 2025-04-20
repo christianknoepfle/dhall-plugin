@@ -1,5 +1,6 @@
 {
   parserClass="org.piperiverstudios.dhall.plugin.simple.parser.SimpleParser"
+  parserUtilClass="org.piperiverstudios.dhall.plugin.simple.parser.SimpleParserUtil"
 
   extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
