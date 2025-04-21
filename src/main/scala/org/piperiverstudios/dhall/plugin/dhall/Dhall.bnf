@@ -12,7 +12,115 @@
   elementTypeHolderClass="org.piperiverstudios.dhall.plugin.dhall.psi.DhallTypes"
   elementTypeClass="org.piperiverstudios.dhall.plugin.dhall.psi.DhallElementType"
   tokenTypeClass="org.piperiverstudios.dhall.plugin.dhall.psi.DhallTokenType"
+
+
+    tokens=[
+       EQEQ = "=="
+       EQUALS = "="
+       PLUS = "+"
+       MINUS = "-"
+       GREATER = ">"
+       SMALLER = "<"
+       GREATER_EQ = ">="
+       SMALLER_EQ = "<="
+       OPEN_BRACE = "("
+       CLOSE_BRACE = ")"
+       OPEN_CURLY_BRACE = "{"
+       CLOSE_CURLY_BRACE = "}"
+       OPEN_BRACKET = "["
+       CLOSE_BRACKET = "]"
+       COMMA = ","
+       COLON = ":"
+       PERCENT = "%"
+       QUESTION_MARK = "?"
+       STRING ="regexp:\"[^\"]*\""
+
+       NUMBER_INT="regexp:[0-9]+"
+       NUMBER_FP="regexp:[0-9]+\.[0-9]+"
+
+       LAMBDA        = "regexp:\u03BB|\\"
+
+       IF = "if"
+       THEN = "then"
+       ELSE = "else"
+       LET = "let"
+       IN = "in"
+       AS = "as"
+       USING = "using"
+       MERGE = "merge"
+       MISSING = "missing"
+       INFINITY = "Infinity"
+       NAN = "NaN"
+       SOME = "Some"
+       TO_MAP = "toMap"
+       ASSERT = "assert"
+       FORALL = "forall"
+       WITH = "with"
+       SHOW_CONSTRUCTOR = "showConstructor"
+
+       BOOL = "Bool"
+       TRUE = "True"
+       FALSE = "False"
+       OPTIONAL = "Optional"
+       NONE = "None"
+       NATURAL = "Natural"
+       INTEGER = "Integer"
+       DOUBLE = "Double"
+       TEXT = "Text"
+       BYTES = "Bytes"
+       DATE = "Date"
+       TIMEZONE = "TimeZone"
+       TIME = "Time"
+       LIST = "List"
+       TYPE = "Type"
+       KIND = "Kind"
+       SORT = "Sort"
+
+       IDENTIFIER = "regexp:[A-z][A-z0-9_]*"
+       //IDENTIFIER = "ident"
+
+       WHITESPACE= " "
+            ]
 }
+
+
+
+root ::= complete-expression
+
+complete-expression ::= expression
+
+expression ::=
+    // "\(x : a) -> b"
+      LAMBDA OPEN_BRACE IDENTIFIER COLON type-annotation  CLOSE_BRACE ARROW expression
+
+    // "let x : t = e1 in e2"
+    // "let x     = e1 in e2"
+    // We allow dropping the `in` between adjacent let-expressions; the following are equivalent:
+    // "let x = e1 let y = e2 in e3"
+    // "let x = e1 in let y = e2 in e3"
+    | let_binding let_binding*
+    | NUMBER_FP
+    | NUMBER_INT
+
+//  "let x = e1"
+let_binding ::= LET IDENTIFIER (COLON  type-annotation )? EQUALS expression
+
+type-annotation ::=
+            primitive-type
+            | IDENTIFIER
+
+primitive-type ::= NATURAL
+                    | BOOL
+                   | INTEGER
+                   | DOUBLE
+                   | TEXT
+                   | BYTES
+                   | DATE
+                   | TIMEZONE
+                   | TIME
+
+
+
 
 dhallFile ::= item_*
 

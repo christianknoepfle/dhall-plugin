@@ -122,8 +122,7 @@ IDENTIFIER = [:jletter:] [:jletterdigit:]*
     {NUMBER_INT}                 {return DhallTypes.NUMBER_INT;}
     {NUMBER_FP}                  {return DhallTypes.NUMBER_FP;}
 
-
-    {WHITE_SPACE}                { print("WHITESPACE"); }
-    {LINE_TERMINATOR}            { print("LINE_TERMINATOR"); }
+    {WHITE_SPACE}                { /* ignore */ }
+    {LINE_TERMINATOR}            { /* ignore */ }
 
 }
